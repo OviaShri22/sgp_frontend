@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, Container, Grid, TextField, Typography, MenuItem } from '@mui/material';
+import config from './config';
 
 const Users = () => {
   const [users, setUsers] = useState([{ name: '', email: '', password: '', yearOfStudy: '' }]);
@@ -51,7 +52,7 @@ const Users = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/users/add', {
+      const response = await fetch(`${config.BASE_API_URL}/api/users/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

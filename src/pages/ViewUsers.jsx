@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import AdminNavbar from '../components/AdminNavbar';
+import config from '../components/config';
 
 const ViewUsers = () => {
     const [users, setUsers] = useState([]);
@@ -11,7 +12,7 @@ const ViewUsers = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/users');
+            const response = await fetch(`${config.BASE_API_URL}/api/users`);
             const result = await response.json();
             setUsers(result);
         } catch (error) {
@@ -21,7 +22,7 @@ const ViewUsers = () => {
 
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/users/${id}`, {
+            const response = await fetch(`${config.BASE_API_URL}/api/users/${id}`, {
                 method: 'DELETE',
             });
 

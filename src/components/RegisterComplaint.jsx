@@ -4,6 +4,7 @@ import { BlueButton } from '../components/buttonStyles';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import psg from '../assets/psg.webp';
+import config from './config';
 
 const Complain = () => {
     const [form, setForm] = useState({
@@ -74,7 +75,7 @@ const Complain = () => {
             if (selectedFile) {
                 formData.append('document', selectedFile);
             }
-            await axios.post('http://localhost:5000/api/complaints', formData, {
+            await axios.post(`${config.BASE_API_URL}/api/complaints`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
                 timeout: 10000,
             });

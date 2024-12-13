@@ -17,6 +17,7 @@ import {
 
 // Import your no complaints image
 import NoComplaintsImage from '../assets/tracking.png'; // Update the path as necessary
+import config from '../components/config';
 
 const ViewComplaintStatus = () => {
   const [complaints, setComplaints] = useState([]);
@@ -29,7 +30,7 @@ const ViewComplaintStatus = () => {
       if (!userEmail) return;
 
       try {
-        const response = await axios.get('http://localhost:5000/api/complaints', {
+        const response = await axios.get(`${config.BASE_API_URL}/api/complaints`, {
           params: {
             email: userEmail,
           },

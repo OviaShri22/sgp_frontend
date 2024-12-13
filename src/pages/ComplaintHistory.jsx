@@ -5,6 +5,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import AdminNavbar from '../components/AdminNavbar';
+import config from '../components/config';
  // Adjust the import as per your project structure
 
 const HistoryOfComplaints = () => {
@@ -13,7 +14,7 @@ const HistoryOfComplaints = () => {
   useEffect(() => {
     const fetchSolvedComplaints = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/complaints');
+        const response = await axios.get(`${config.BASE_API_URL}/api/complaints`);
         setSolvedComplaints(response.data); // Update state with the solved complaints
       } catch (error) {
         console.error('Error fetching solved complaints:', error);

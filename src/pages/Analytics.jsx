@@ -3,6 +3,7 @@ import { Bar, Pie } from "react-chartjs-2";
 import { Container, Typography, Box, Grid } from "@mui/material";
 import AdminNavbar from "../components/AdminNavbar";
 import axios from "axios";
+import config from '../components/config';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -31,7 +32,7 @@ const AdminAnalytics = () => {
   useEffect(() => {
     const fetchComplaints = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/complaints");
+        const response = await axios.get(`${config.BASE_API_URL}/api/complaints`);
         setComplaintData(response.data);
       } catch (error) {
         console.error("Error fetching complaints:", error);

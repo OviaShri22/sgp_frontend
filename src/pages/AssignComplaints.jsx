@@ -19,6 +19,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import AdminNavbar from '../components/AdminNavbar';
+import config from '../components/config';
 
 const AssignComplaints = () => {
   const [complaints, setComplaints] = useState([]);
@@ -31,7 +32,7 @@ const AssignComplaints = () => {
   useEffect(() => {
     const fetchComplaints = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/complaints');
+        const response = await axios.get(`${config.BASE_API_URL}/api/complaints`);
         const unsolvedComplaints = response.data.filter(complaint => complaint.status !== 'Grievance Solved');
         setComplaints(unsolvedComplaints);
       } catch (error) {
@@ -41,7 +42,7 @@ const AssignComplaints = () => {
 
     const fetchfaculties = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/faculties');
+        const response = await axios.get(`${config.BASE_API_URL}/api/faculties`);
         setfaculties(response.data);
       } catch (error) {
         console.error('Error fetching faculties:', error);
@@ -75,7 +76,7 @@ const AssignComplaints = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/complaints/${selectedComplaint._id}`,
+        `${config.BASE_API_URL}/api/complaints/${selectedComplaint._id}`,
         {
           assignedFaculty: selectedFaculty,
           assignedAt: assignedAt,

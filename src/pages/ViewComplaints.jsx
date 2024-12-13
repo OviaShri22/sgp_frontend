@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import AdminNavbar from '../components/AdminNavbar';
+import config from '../components/config';
 
 const ViewComplaints = () => {
   const [complaints, setComplaints] = useState([]);
@@ -17,7 +18,7 @@ const ViewComplaints = () => {
   useEffect(() => {
     const fetchComplaints = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/complaints');
+        const response = await axios.get(`${config.BASE_API_URL}/api/complaints`);
         setComplaints(response.data);
 
         // Apply initial filtering and sorting
@@ -68,7 +69,7 @@ const ViewComplaints = () => {
 
   const handleStatusUpdate = async (status) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/complaints/${selectedComplaint._id}, { status }`);
+      const response = await axios.put(`${config.BASE_API_URL}/api/complaints/${selectedComplaint._id}, { status }`);
       const updatedComplaint = response.data;
 
       // Update both complaints and filteredComplaints

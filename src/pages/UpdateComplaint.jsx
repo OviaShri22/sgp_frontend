@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import FacultyNavbar from '../components/FacultyNavbar';
+import config from '../components/config';
 
 const UpdateComplaint = () => {
   const [complaints, setComplaints] = useState([]);
@@ -25,7 +26,7 @@ const UpdateComplaint = () => {
         }
 
         // Fetch complaints assigned to the technician
-        const response = await axios.get(`http://localhost:5000/api/faculties/complaints?facultyId=${facultyId}`);
+        const response = await axios.get(`${config.BASE_API_URL}/api/faculties/complaints?facultyId=${facultyId}`);
         setComplaints(response.data);
         setFilteredComplaints(response.data); // Set both states with the same data initially
       } catch (error) {
@@ -67,7 +68,7 @@ const UpdateComplaint = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/complaints/status/${selectedComplaint._id}`,
+        `${config.BASE_API_URL}/api/complaints/status/${selectedComplaint._id}`,
         { status }
       );
 

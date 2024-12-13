@@ -16,6 +16,7 @@ import axios from "axios";
 import FacultyNavbar from "../components/FacultyNavbar";
 import { Link } from "react-router-dom";
 import DocumentViewer from "./DocumentViewer";
+import config from '../components/config';
 
 export const FacultyComplaints = () => {
   const [complaints, setComplaints] = useState([]);
@@ -32,7 +33,7 @@ export const FacultyComplaints = () => {
 
         console.log("Fetching complaints for faculty ID:", facultyId);
         const response = await axios.get(
-          `http://localhost:5000/api/faculties/complaints?facultyId=${facultyId}`
+          `${config.BASE_API_URL}/api/faculties/complaints?facultyId=${facultyId}`
         );
 
         setComplaints(response.data);
@@ -97,7 +98,7 @@ export const FacultyComplaints = () => {
                     <TableCell>
                       {complaint.document ? (
                         <DocumentViewer
-                          url={`http://localhost:5000/${decodeURIComponent(
+                          url={`${config.BASE_API_URL}/${decodeURIComponent(
                             complaint.document
                           )}`}
                         />

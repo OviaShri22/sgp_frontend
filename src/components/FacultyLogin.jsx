@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Import Axios for making API calls
 import "../styles/forms.css";
+import config from './config';
 
 const FacultyLogin = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ const FacultyLogin = () => {
   const handleLogin = async () => {
     try {
         // Send login data to the backend
-        const response = await axios.post('http://localhost:5000/api/faculties/login', { email, password });
+        const response = await axios.post(`${config.BASE_API_URL}/api/faculties/login`, { email, password });
 
         // If login is successful, store faculty ID in local storage
         if (response.status === 200) {

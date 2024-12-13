@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import "../styles/AdminPage.css"; // Import the CSS file
 import AdminNavbar from '../components/AdminNavbar';
+import config from '../components/config';
 
 const AddFaculty = () => {
   const [faculties, setFaculties] = useState([
@@ -55,7 +56,7 @@ const AddFaculty = () => {
       }
 
       for (let i = 0; i < faculties.length; i++) {
-        await axios.post('http://localhost:5000/api/faculties', faculties[i]);
+        await axios.post(`${config.BASE_API_URL}/api/faculties`, faculties[i]);
       }
       alert('Faculty added successfully!');
       setFaculties([{ name: '', email: '', expertise: '', password: '' }]); // Reset form after submission
